@@ -41,8 +41,8 @@ def main():
     filename = input()
     if "a" not in filename:
       with open(str("test/" + filename), mode="r") as fails:
-        n = int(input())
-        data = list(map(int, input().split()))
+        n = int(fails.readline())
+        data = list(map(int, fails.readline().split()))
     else:
       print("error")
   elif "I" in txt:
