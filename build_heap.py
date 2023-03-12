@@ -7,9 +7,9 @@ def build_heap(data):
       min = i
       lChild = 2 * i + 1
       rChild = 2 * i + 2
-      if data[lChild] < data[min]:
+      if lChild < n and data[lChild] < data[min]:
         min = lChild
-      if data[rChild] < data[min]:
+      if rChild < n and data[rChild] < data[min]:
         min = rChild
       if i != min:
         data[i], data[min] = data[min], data[i]
@@ -24,10 +24,10 @@ def check(n, data, swaps):
   for i in range(n // 2 - 1, -1, -1):
     lChild = 2 * i + 1
     rChild = 2 * i + 2
-    if data[lChild] < data[i]:
+    if lChild < n and data[lChild] < data[i]:
       data[i], data[lChild] = data[lChild], data[i]
       swaps.append((i, lChild))
-    if data[rChild] < data[i]:
+    if rChild < n and data[rChild] < data[i]:
       data[i], data[rChild] = data[rChild], data[i]
       swaps.append((i, rChild))
   return swaps
@@ -40,17 +40,14 @@ def main():
   if "F" in txt:
     filename = input()
     if "a" not in filename:
-      with open(str("./test/"+filename), mode="r") as fails:
+      with open("test/"+filename, mode="r") as fails:
         n = int(fails.readline())
         data = list(map(int, fails.readline().split()))
-    else:
-      print("error")
-  elif "I" in txt:
+
+  if "I" in txt:
     # input from keyboard
     n = int(input())
     data = list(map(int, input().split()))
-  else:
-    print("Input error")
 
   # checks if lenght of data is the same as the said lenght
   assert len(data) == n
