@@ -40,7 +40,8 @@ def main():
   if "F" in txt:
     filename = input()
     if "a" not in filename:
-      with open("test/"+filename, mode="r") as fails:
+      f_path = "./tests/" + filename
+      with open(f_path) as fails:
         n = int(fails.readline())
         data = list(map(int, fails.readline().split()))
 
